@@ -1,26 +1,26 @@
 {
-    "heroImage": "/uploads/1770052395268-vehicles-audi_rs6_avant-audi-492180.jpeg",
-    "heroImageDesktop": "/hero-dates-desktop.jpg",
-    "deliveryFees": {
-        "Alger": {
-            "home": 600,
-            "bureau": 350
-        },
-        "Blida": {
-            "home": 600,
-            "bureau": 350
-        },
-        "Wilaya_Default_North": {
-            "home": 600,
-            "bureau": 350
-        },
-        "Wilaya_Default_South": {
-            "home": 1000,
-            "bureau": 600
-        },
-        "Wilaya_Default_Other": {
-            "home": 800,
-            "bureau": 500
-        }
+  "heroImage": "/uploads/1770055762804-vehicles-dodge_challenger_srt8-burnout-car-dodge_challenger-dodge-orange_car-smoke-273310.jpeg",
+  "heroImageDesktop": "/hero-dates-desktop.jpg",
+  "deliveryFees": {
+    "Alger": {
+      "home": 600,
+      "bureau": 350
+    },
+    "Blida": {
+      "home": 600,
+      "bureau": 350
+    },
+    "Wilaya_Default_North": {
+      "home": 600,
+      "bureau": 350
+    },
+    "Wilaya_Default_South": {
+      "home": 1000,
+      "bureau": 600
+    },
+    "Wilaya_Default_Other": {
+      "home": 800,
+      "bureau": 500
     }
+  }
 }
