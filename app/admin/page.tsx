@@ -14,18 +14,35 @@ export default function AdminDashboard() {
         const file = e.target.files?.[0];
         if (!file) return;
 
-        const formData = new FormData();
-        formData.append('file', file);
+        // Resize and Encode to Base64 (Bypass Storage Requirements)
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const MAX_WIDTH = 1200;
+                let width = img.width;
+                let height = img.height;
 
-        try {
-            const res = await fetch('/api/upload', { method: 'POST', body: formData });
-            const data = await res.json();
-            if (data.url) {
-                updateSettings({ heroImage: data.url });
-            }
-        } catch (err) {
-            console.error(err);
-        }
+                if (width > MAX_WIDTH) {
+                    height *= MAX_WIDTH / width;
+                    width = MAX_WIDTH;
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx?.drawImage(img, 0, 0, width, height);
+
+                // Compress to JPEG 0.8 to ensure < 500KB for Firestore
+                const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+
+                updateSettings({ heroImage: dataUrl });
+                alert("Image mise à jour avec succès ! (Mode Base64)");
+            };
+            img.src = event.target?.result as string;
+        };
+        reader.readAsDataURL(file);
     };
 
     useEffect(() => {
