@@ -204,21 +204,37 @@ export default function AdminProductsPage() {
                                         type="file"
                                         accept="image/*"
                                         className="w-full p-2 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:border-dattes-accent text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-dattes-primary file:text-white hover:file:bg-dattes-accent transition-all"
-                                        onChange={async (e) => {
+                                        onChange={(e) => {
                                             const file = e.target.files?.[0];
                                             if (file) {
-                                                const formData = new FormData();
-                                                formData.append('file', file);
-                                                try {
-                                                    const res = await fetch('/api/upload', { method: 'POST', body: formData });
-                                                    if (res.ok) {
-                                                        const data = await res.json();
-                                                        setNewItem({ ...newItem, images: [data.url] });
-                                                    }
-                                                } catch (err) {
-                                                    console.error('Upload failed', err);
-                                                    alert('Upload failed');
-                                                }
+                                                // Resize and Encode to Base64 (Bypass Storage Requirements)
+                                                const reader = new FileReader();
+                                                reader.onload = (event) => {
+                                                    const img = new Image();
+                                                    img.onload = () => {
+                                                        const canvas = document.createElement('canvas');
+                                                        const MAX_WIDTH = 1200;
+                                                        let width = img.width;
+                                                        let height = img.height;
+
+                                                        if (width > MAX_WIDTH) {
+                                                            height *= MAX_WIDTH / width;
+                                                            width = MAX_WIDTH;
+                                                        }
+
+                                                        canvas.width = width;
+                                                        canvas.height = height;
+                                                        const ctx = canvas.getContext('2d');
+                                                        ctx?.drawImage(img, 0, 0, width, height);
+
+                                                        // Compress to JPEG 0.8
+                                                        const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+
+                                                        setNewItem({ ...newItem, images: [dataUrl] });
+                                                    };
+                                                    img.src = event.target?.result as string;
+                                                };
+                                                reader.readAsDataURL(file);
                                             }
                                         }}
                                     />

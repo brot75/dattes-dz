@@ -1,49 +1,39 @@
-
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { db } from '@/lib/firebase';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 export const dynamic = 'force-dynamic';
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'products.json');
-
-// Helper to read data
-const readData = () => {
-    try {
-        if (!fs.existsSync(DATA_FILE)) return [];
-        const fileData = fs.readFileSync(DATA_FILE, 'utf-8');
-        return JSON.parse(fileData);
-    } catch (error) {
-        return [];
-    }
-};
-
-// Helper to write data
-const writeData = (data: any) => {
-    try {
-        fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 4));
-        return true;
-    } catch (error) {
-        return false;
-    }
-};
+const INVENTORY_DOC = 'main';
 
 export async function GET() {
-    const products = readData();
-    return NextResponse.json(products);
+    try {
+        const docRef = doc(db, 'inventory', INVENTORY_DOC);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            return NextResponse.json(docSnap.data().items || []);
+        }
+        return NextResponse.json([]);
+    } catch (error) {
+        console.error('Firestore get error:', error);
+        return NextResponse.json([]);
+    }
 }
 
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        // Body should be the FULL new inventory array to completely replace it
-        // Or we could handle partial updates, but for simplicity of syncing with store, we replace.
+
         if (Array.isArray(body)) {
-            writeData(body);
+            const docRef = doc(db, 'inventory', INVENTORY_DOC);
+            // Save the array inside an object key 'items'
+            await setDoc(docRef, { items: body });
             return NextResponse.json({ success: true, message: 'Inventory updated', data: body });
         }
         return NextResponse.json({ success: false, message: 'Invalid format' }, { status: 400 });
     } catch (error) {
+        console.error('Firestore save error:', error);
         return NextResponse.json({ success: false, message: 'Server Error' }, { status: 500 });
     }
 }
