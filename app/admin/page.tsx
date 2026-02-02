@@ -90,7 +90,7 @@ export default function AdminDashboard() {
                     <h3 className="text-sm font-bold text-yellow-800">Mode Démonstration (Vercel)</h3>
                     <p className="text-sm text-yellow-700 mt-1">
                         Vous êtes sur un serveur "Read-Only". Les modifications (images, prix) ne sont <strong>pas sauvegardées définitivement</strong>.
-                        Si vous rechargez la page, les valeurs par défaut (Audi RS6) reviendront.
+                        Si vous rechargez la page, les valeurs par défaut reviendront.
                         <br />
                         Pour activer la sauvegarde permanente, une base de données est requise.
                     </p>
@@ -209,7 +209,7 @@ export default function AdminDashboard() {
                                 onClick={() => updateSettings({ heroImage: '/hero-dates-v2.png' })}
                                 className="text-xs text-gray-400 underline hover:text-red-500 mt-2"
                             >
-                                Restaurer l'image par défaut (Supprimer Audi)
+                                Restaurer l'image par défaut
                             </button>
                             {/* The original "Changer l'image" button is now redundant as the input is styled directly.
                                 Keeping it commented out or removed based on desired UI.

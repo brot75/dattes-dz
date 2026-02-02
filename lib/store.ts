@@ -429,12 +429,12 @@ export const useStore = create<StoreState>()(
                 const newOrders = [order, ...get().orders];
                 set({ orders: newOrders });
 
-                // 1. Sync Orders
+                // 1. Sync Single Order to API
                 fetch('/api/orders', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(newOrders)
-                });
+                    body: JSON.stringify(order)
+                }).catch(err => console.error('Order sync failed', err));
 
                 // 2. Sync Stock Deduction
                 const currentInventory = [...get().inventory];
