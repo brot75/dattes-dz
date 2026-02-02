@@ -1,0 +1,19 @@
+{
+    "hosting": {
+        "target": "dattesdz",
+        "public": "out",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**",
+            "hero-bg.jpg",
+            "uploads/**"
+        ],
+        "rewrites": [
+            {
+                "source": "**",
+                "destination": "/index.html"
+            }
+        ]
+    }
+}

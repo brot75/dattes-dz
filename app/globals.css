@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dattes-bg: #F9F5F0;  /* Cream/Sand */
+  --color-dattes-primary: #1a472a; /* Deep Forest Green */
+  --color-dattes-accent: #4caf50; /* Fresh Green */
+
+  --font-playfair: var(--font-playfair);
+  --font-inter: var(--font-inter);
+  --font-cairo: var(--font-cairo);
+  
+  --font-display: var(--font-playfair), serif;
+  --font-sans: var(--font-inter), var(--font-cairo), sans-serif;
+  
+  /* Extend generic colors */
+  --color-background: var(--color-dattes-bg);
+  --color-foreground: var(--color-dattes-primary);
+}
+
+body {
+  background-color: var(--color-dattes-bg);
+  color: var(--color-dattes-primary);
+  font-family: var(--font-sans);
+}
+
+/* Custom Utilities */
+@utility text-balance {
+  text-wrap: balance;
+}

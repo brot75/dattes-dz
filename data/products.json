@@ -1,0 +1,121 @@
+[
+    {
+        "id": "1",
+        "type": "Deglet Nour",
+        "quality": "Premium",
+        "pricePerKg": 1200,
+        "stockKg": 500,
+        "unit": "kg",
+        "packaging": "standard",
+        "images": [
+            "/products/deglet-nour.png"
+        ],
+        "description": "Dattes Deglet Nour de qualité supérieure, transparentes et mielleuses.",
+        "origin": "Tolga",
+        "longDescription": "La Deglet Nour (\"Doigt de lumière\") est la reine des dattes. Cette sélection Premium provient des meilleures palmeraies de Tolga. Sa texture est moelleuse, sa couleur translucide laisse apparaître le noyau, et son goût de miel est incomparable.",
+        "nutritionalInfo": {
+            "calories": 282,
+            "carbs": 75,
+            "protein": 2.5,
+            "fiber": 8
+        },
+        "typeAr": "دقلة نور",
+        "qualityAr": "ممتاز",
+        "originAr": "طولقة",
+        "descriptionAr": "تمور دقلة نور عالية الجودة، شفافة ومعسلة."
+    },
+    {
+        "id": "2",
+        "type": "Deglet Nour",
+        "quality": "Standard",
+        "pricePerKg": 850,
+        "stockKg": 1000,
+        "images": [
+            "/products/deglet-nour.png"
+        ],
+        "description": "Dattes Deglet Nour idéales pour la consommation quotidienne.",
+        "origin": "Biskra",
+        "longDescription": "Une Deglet Nour authentique, idéale pour le quotidien. Moins translucide que la Premium mais tout aussi savoureuse, elle offre un excellent rapport qualité-prix.",
+        "nutritionalInfo": {
+            "calories": 280,
+            "carbs": 74,
+            "protein": 2.4,
+            "fiber": 7.5
+        },
+        "typeAr": "دقلة نور",
+        "qualityAr": "عادي",
+        "originAr": "بسكرة",
+        "descriptionAr": "تمور دقلة نور مثالية للاستهلاك اليومي."
+    },
+    {
+        "id": "3",
+        "type": "Ghars",
+        "quality": "Premium",
+        "pricePerKg": 450,
+        "stockKg": 300,
+        "images": [
+            "/products/ghars.png"
+        ],
+        "description": "Dattes écrasées (Ghars/Btana), parfaites pour la pâtisserie (Makroud, Bradj).",
+        "origin": "Oued Souf",
+        "longDescription": "Le Ghars est une datte moelleuse écrasée, formant une pâte naturelle riche et sucrée. Indispensable pour la préparation des gâteaux traditionnels algériens comme le Makroud et le Bradj.",
+        "typeAr": "غرس (بطانة)",
+        "qualityAr": "ممتاز",
+        "originAr": "الوادي",
+        "descriptionAr": "تمر مهروس (غرس/بطانة)، مثالي للحلويات (المقروط، البراج).",
+        "nutritionalInfo": {
+            "calories": 300,
+            "carbs": 80,
+            "protein": 2.2,
+            "fiber": 9
+        }
+    },
+    {
+        "id": "4",
+        "type": "Deglet Beida",
+        "quality": "Standard",
+        "pricePerKg": 600,
+        "stockKg": 200,
+        "images": [
+            "/products/deglet-nour.png"
+        ],
+        "description": "Dattes sèches et croquantes, riches en fibres.",
+        "origin": "Tolga",
+        "longDescription": "La Deglet Beida est une datte sèche, très appréciée pour sa texture croquante et sa longue conservation.",
+        "typeAr": "دقلة بيضاء",
+        "qualityAr": "عادي",
+        "originAr": "طولقة",
+        "descriptionAr": "تمور دقلة بيضاء جافة ومقرمشة، غنية بالألياف.",
+        "nutritionalInfo": {
+            "calories": 280,
+            "carbs": 75,
+            "protein": 2.5,
+            "fiber": 8
+        }
+    },
+    {
+        "id": "5",
+        "type": "Roub",
+        "quality": "Premium",
+        "pricePerKg": 300,
+        "stockKg": 100,
+        "images": [
+            "/uploads/1770052395268-vehicles-audi_rs6_avant-audi-492180.jpeg"
+        ],
+        "description": "Dattes fraîches (Roub), très sucrées et fondantes.",
+        "origin": "Tolga",
+        "longDescription": "Le Roub est une datte fraîche, cueillie à mi-maturité. Elle est incroyablement fondante et sucrée, un véritable délice saisonnier.",
+        "typeAr": "رطب",
+        "qualityAr": "ممتاز",
+        "originAr": "طولقة",
+        "descriptionAr": "تمور رطب طازجة، حلوة جداً وتذوب في الفم.",
+        "unit": "kg",
+        "packaging": "standard",
+        "nutritionalInfo": {
+            "calories": 260,
+            "carbs": 65,
+            "protein": 1.8,
+            "fiber": 6
+        }
+    }
+]

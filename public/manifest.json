@@ -1,0 +1,21 @@
+{
+    "name": "ABdattes - Dattes Algériennes Premium",
+    "short_name": "ABdattes",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#F9F5F0",
+    "theme_color": "#3E2723",
+    "icons": [
+        {
+            "src": "/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "orientation": "portrait-primary"
+}

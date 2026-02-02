@@ -1,0 +1,85 @@
+// Full list of 58 Wilayas + 11 Specific Zones
+export const WILAYAS = [
+    // 1-10
+    { id: 1, name_fr: 'Adrar', name_ar: 'أدرار', delivery_home: 900, delivery_desk: 500, communes: [{ fr: 'Adrar', ar: 'أدرار' }, { fr: 'Tamest', ar: 'تامست' }, { fr: 'Charouine', ar: 'شروين' }] },
+    { id: 2, name_fr: 'Chlef', name_ar: 'الشلف', delivery_home: 700, delivery_desk: 400, communes: [{ fr: 'Chlef', ar: 'الشلف' }, { fr: 'Ténès', ar: 'تنس' }, { fr: 'Boukadir', ar: 'بوقادير' }] },
+    { id: 3, name_fr: 'Laghouat', name_ar: 'الأغواط', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Laghouat', ar: 'الأغواط' }, { fr: 'Aflou', ar: 'أفلو' }] },
+    { id: 4, name_fr: 'Oum El Bouaghi', name_ar: 'أم البواقي', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Oum El Bouaghi', ar: 'أم البواقي' }, { fr: 'Aïn Beïda', ar: 'عين البيضاء' }] },
+    { id: 5, name_fr: 'Batna', name_ar: 'باتنة', delivery_home: 750, delivery_desk: 400, communes: [{ fr: 'Batna', ar: 'باتنة' }, { fr: 'Barika', ar: 'بريكة' }, { fr: 'Merouana', ar: 'مروانة' }] },
+    { id: 6, name_fr: 'Béjaïa', name_ar: 'بجاية', delivery_home: 750, delivery_desk: 400, communes: [{ fr: 'Béjaïa', ar: 'بجاية' }, { fr: 'Amizour', ar: 'أميزور' }, { fr: 'Akbou', ar: 'أقبو' }] },
+    { id: 7, name_fr: 'Biskra', name_ar: 'بسكرة', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Biskra', ar: 'بسكرة' }, { fr: 'Tolga', ar: 'طولقة' }] },
+    { id: 8, name_fr: 'Béchar', name_ar: 'بشار', delivery_home: 900, delivery_desk: 500, communes: [{ fr: 'Béchar', ar: 'بشار' }, { fr: 'Abadla', ar: 'العبادلة' }] },
+    { id: 9, name_fr: 'Blida', name_ar: 'البليدة', delivery_home: 500, delivery_desk: 250, communes: [{ fr: 'Blida', ar: 'البليدة' }, { fr: 'Boufarik', ar: 'بوفاريك' }] },
+    { id: 10, name_fr: 'Bouira', name_ar: 'البويرة', delivery_home: 600, delivery_desk: 300, communes: [{ fr: 'Bouira', ar: 'البويرة' }, { fr: 'Lakhdaria', ar: 'الأخضرية' }] },
+
+    // 11-20
+    { id: 11, name_fr: 'Tamanrasset', name_ar: 'تمنراست', delivery_home: 1200, delivery_desk: 800, communes: [{ fr: 'Tamanrasset', ar: 'تمنراست' }] },
+    { id: 12, name_fr: 'Tébessa', name_ar: 'تبسة', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Tébessa', ar: 'تبسة' }, { fr: 'Bir El Ater', ar: 'بئر العاتر' }] },
+    { id: 13, name_fr: 'Tlemcen', name_ar: 'تلمسان', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Tlemcen', ar: 'تلمسان' }, { fr: 'Maghnia', ar: 'مغنية' }] },
+    { id: 14, name_fr: 'Tiaret', name_ar: 'تيارت', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Tiaret', ar: 'تيارت' }, { fr: 'Sougueur', ar: 'السوقر' }] },
+    { id: 15, name_fr: 'Tizi Ouzou', name_ar: 'تيزي وزو', delivery_home: 700, delivery_desk: 400, communes: [{ fr: 'Tizi Ouzou', ar: 'تيزي وزو' }, { fr: 'Draâ Ben Khedda', ar: 'ذراع بن خدة' }] },
+    { id: 16, name_fr: 'Alger', name_ar: 'الجزائر', delivery_home: 400, delivery_desk: 200, communes: [{ fr: 'Alger-Centre', ar: 'الجزائر الوسطى' }, { fr: 'Sidi M\'Hamed', ar: 'سيدي امحمد' }, { fr: 'Bab El Oued', ar: 'باب الوادي' }, { fr: 'Kouba', ar: 'القبة' }, { fr: 'Bir Mourad Raïs', ar: 'بئر مراد رايس' }] },
+    { id: 17, name_fr: 'Djelfa', name_ar: 'الجلفة', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Djelfa', ar: 'الجلفة' }, { fr: 'Aïn Oussara', ar: 'عين وسارة' }] },
+    { id: 18, name_fr: 'Jijel', name_ar: 'جيجل', delivery_home: 750, delivery_desk: 400, communes: [{ fr: 'Jijel', ar: 'جيجل' }, { fr: 'Taher', ar: 'الطاهير' }] },
+    { id: 19, name_fr: 'Sétif', name_ar: 'سطيف', delivery_home: 700, delivery_desk: 400, communes: [{ fr: 'Sétif', ar: 'سطيف' }, { fr: 'El Eulma', ar: 'العلمة' }, { fr: 'Aïn Oulmene', ar: 'عين ولمان' }] },
+    { id: 20, name_fr: 'Saïda', name_ar: 'سعيدة', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Saïda', ar: 'سعيدة' }] },
+
+    // 21-30
+    { id: 21, name_fr: 'Skikda', name_ar: 'سكيكدة', delivery_home: 750, delivery_desk: 400, communes: [{ fr: 'Skikda', ar: 'سكيكدة' }, { fr: 'Azzaba', ar: 'عزابة' }] },
+    { id: 22, name_fr: 'Sidi Bel Abbès', name_ar: 'سيدي بلعباس', delivery_home: 750, delivery_desk: 400, communes: [{ fr: 'Sidi Bel Abbès', ar: 'سيدي بلعباس' }, { fr: 'Sfisef', ar: 'سفيزف' }] },
+    { id: 23, name_fr: 'Annaba', name_ar: 'عنابة', delivery_home: 750, delivery_desk: 400, communes: [{ fr: 'Annaba', ar: 'عنابة' }, { fr: 'El Bouni', ar: 'البوني' }] },
+    { id: 24, name_fr: 'Guelma', name_ar: 'قالمة', delivery_home: 750, delivery_desk: 400, communes: [{ fr: 'Guelma', ar: 'قالمة' }] },
+    { id: 25, name_fr: 'Constantine', name_ar: 'قسنطينة', delivery_home: 700, delivery_desk: 400, communes: [{ fr: 'Constantine', ar: 'قسنطينة' }, { fr: 'El Khroub', ar: 'الخروب' }, { fr: 'Ali Mendjeli', ar: 'علي منجلي' }] },
+    { id: 26, name_fr: 'Médéa', name_ar: 'المدية', delivery_home: 700, delivery_desk: 350, communes: [{ fr: 'Médéa', ar: 'المدية' }, { fr: 'Berrouaghia', ar: 'البرواقية' }] },
+    { id: 27, name_fr: 'Mostaganem', name_ar: 'مستغانم', delivery_home: 750, delivery_desk: 400, communes: [{ fr: 'Mostaganem', ar: 'مستغانم' }] },
+    { id: 28, name_fr: 'M\'Sila', name_ar: 'المسيلة', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'M\'Sila', ar: 'المسيلة' }, { fr: 'Bou Saâda', ar: 'بوسعادة' }] },
+    { id: 29, name_fr: 'Mascara', name_ar: 'معسكر', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Mascara', ar: 'معسكر' }, { fr: 'Sig', ar: 'سيق' }] },
+    { id: 30, name_fr: 'Ouargla', name_ar: 'ورقلة', delivery_home: 900, delivery_desk: 500, communes: [{ fr: 'Ouargla', ar: 'ورقلة' }, { fr: 'Hassi Messaoud', ar: 'حاسي مسعود' }] },
+
+    // 31-40
+    { id: 31, name_fr: 'Oran', name_ar: 'وهران', delivery_home: 700, delivery_desk: 400, communes: [{ fr: 'Oran', ar: 'وهران' }, { fr: 'Es Senia', ar: 'السانية' }, { fr: 'Bir El Djir', ar: 'بئر الجير' }] },
+    { id: 32, name_fr: 'El Bayadh', name_ar: 'البيض', delivery_home: 900, delivery_desk: 500, communes: [{ fr: 'El Bayadh', ar: 'البيض' }] },
+    { id: 33, name_fr: 'Illizi', name_ar: 'إليزي', delivery_home: 1200, delivery_desk: 800, communes: [{ fr: 'Illizi', ar: 'إليزي' }] },
+    { id: 34, name_fr: 'Bordj Bou Arreridj', name_ar: 'برج بوعريريج', delivery_home: 700, delivery_desk: 400, communes: [{ fr: 'Bordj Bou Arreridj', ar: 'برج بوعريريج' }] },
+    { id: 35, name_fr: 'Boumerdès', name_ar: 'بومرداس', delivery_home: 600, delivery_desk: 300, communes: [{ fr: 'Boumerdès', ar: 'بومرداس' }, { fr: 'Boudouaou', ar: 'بودواو' }] },
+    { id: 36, name_fr: 'El Tarf', name_ar: 'الطارف', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'El Tarf', ar: 'الطارف' }] },
+    { id: 37, name_fr: 'Tindouf', name_ar: 'تندوف', delivery_home: 1200, delivery_desk: 800, communes: [{ fr: 'Tindouf', ar: 'تندوف' }] },
+    { id: 38, name_fr: 'Tissemsilt', name_ar: 'تيسمسيلت', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Tissemsilt', ar: 'تيسمسيلت' }] },
+    { id: 39, name_fr: 'El Oued', name_ar: 'الوادي', delivery_home: 900, delivery_desk: 500, communes: [{ fr: 'El Oued', ar: 'الوادي' }] },
+    { id: 40, name_fr: 'Khenchela', name_ar: 'خنشلة', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Khenchela', ar: 'خنشلة' }] },
+
+    // 41-48
+    { id: 41, name_fr: 'Souk Ahras', name_ar: 'سوق أهراس', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Souk Ahras', ar: 'سوق أهراس' }] },
+    { id: 42, name_fr: 'Tipaza', name_ar: 'تيبازة', delivery_home: 600, delivery_desk: 300, communes: [{ fr: 'Tipaza', ar: 'تيبازة' }, { fr: 'Kolea', ar: 'القليعة' }] },
+    { id: 43, name_fr: 'Mila', name_ar: 'ميلة', delivery_home: 750, delivery_desk: 400, communes: [{ fr: 'Mila', ar: 'ميلة' }, { fr: 'Chelghoum Laid', ar: 'شلغوم العيد' }] },
+    { id: 44, name_fr: 'Aïn Defla', name_ar: 'عين الدفلى', delivery_home: 700, delivery_desk: 350, communes: [{ fr: 'Aïn Defla', ar: 'عين الدفلى' }, { fr: 'Khemis Miliana', ar: 'خميس مليانة' }] },
+    { id: 45, name_fr: 'Naâma', name_ar: 'النعامة', delivery_home: 900, delivery_desk: 500, communes: [{ fr: 'Naâma', ar: 'النعامة' }, { fr: 'Mecheria', ar: 'المشرية' }] },
+    { id: 46, name_fr: 'Aïn Témouchent', name_ar: 'عين تموشنت', delivery_home: 750, delivery_desk: 400, communes: [{ fr: 'Aïn Témouchent', ar: 'عين تموشنت' }] },
+    { id: 47, name_fr: 'Ghardaïa', name_ar: 'غرداية', delivery_home: 900, delivery_desk: 500, communes: [{ fr: 'Ghardaïa', ar: 'غرداية' }, { fr: 'Metlili', ar: 'متليلي' }] },
+    { id: 48, name_fr: 'Relizane', name_ar: 'غليزان', delivery_home: 750, delivery_desk: 400, communes: [{ fr: 'Relizane', ar: 'غليزان' }] },
+
+    // 49-58 (New Wilayas)
+    { id: 49, name_fr: 'Timimoun', name_ar: 'تيميمون', delivery_home: 1000, delivery_desk: 600, communes: [{ fr: 'Timimoun', ar: 'تيميمون' }] },
+    { id: 50, name_fr: 'Bordj Badji Mokhtar', name_ar: 'برج باجي مختار', delivery_home: 1200, delivery_desk: 800, communes: [{ fr: 'Bordj Badji Mokhtar', ar: 'برج باجي مختار' }] },
+    { id: 51, name_fr: 'Ouled Djellal', name_ar: 'أولاد جلال', delivery_home: 900, delivery_desk: 500, communes: [{ fr: 'Ouled Djellal', ar: 'أولاد جلال' }] },
+    { id: 52, name_fr: 'Béni Abbès', name_ar: 'بني عباس', delivery_home: 1000, delivery_desk: 600, communes: [{ fr: 'Béni Abbès', ar: 'بني عباس' }] },
+    { id: 53, name_fr: 'In Salah', name_ar: 'عين صالح', delivery_home: 1100, delivery_desk: 700, communes: [{ fr: 'In Salah', ar: 'عين صالح' }] },
+    { id: 54, name_fr: 'In Guezzam', name_ar: 'عين قزام', delivery_home: 1200, delivery_desk: 800, communes: [{ fr: 'In Guezzam', ar: 'عين قزام' }] },
+    { id: 55, name_fr: 'Touggourt', name_ar: 'تقرت', delivery_home: 900, delivery_desk: 500, communes: [{ fr: 'Touggourt', ar: 'تقرت' }] },
+    { id: 56, name_fr: 'Djanet', name_ar: 'جانت', delivery_home: 1200, delivery_desk: 800, communes: [{ fr: 'Djanet', ar: 'جانت' }] },
+    { id: 57, name_fr: 'El M\'Ghair', name_ar: 'المغير', delivery_home: 900, delivery_desk: 500, communes: [{ fr: 'El M\'Ghair', ar: 'المغير' }] },
+    { id: 58, name_fr: 'El Meniaa', name_ar: 'المنيعة', delivery_home: 900, delivery_desk: 500, communes: [{ fr: 'El Meniaa', ar: 'المنيعة' }] },
+
+    // 59-69 (Specific Zones as requested)
+    { id: 59, name_fr: 'Aflou', name_ar: 'أفلو', delivery_home: 850, delivery_desk: 500, communes: [{ fr: 'Aflou', ar: 'أفلو' }] },
+    { id: 60, name_fr: 'El Abiodh Sidi Cheikh', name_ar: 'الأبيض سيدي الشيخ', delivery_home: 900, delivery_desk: 550, communes: [{ fr: 'El Abiodh Sidi Cheikh', ar: 'الأبيض سيدي الشيخ' }] },
+    { id: 61, name_fr: 'El Aricha', name_ar: 'العريشة', delivery_home: 900, delivery_desk: 550, communes: [{ fr: 'El Aricha', ar: 'العريشة' }, { fr: 'El Gor', ar: 'الغور' }, { fr: 'Sidi Djillali', ar: 'سيدي جيلالي' }, { fr: 'Elbouihi', ar: 'البويهي' }] },
+    { id: 62, name_fr: 'El Kantara', name_ar: 'القنطرة', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'El Kantara', ar: 'القنطرة' }, { fr: 'Ain Zaatout', ar: 'عين زعطوط' }, { fr: 'Branis', ar: 'برانيس' }, { fr: 'El Outaya', ar: 'الوطاية' }, { fr: 'Djemorah', ar: 'جمورة' }] },
+    { id: 63, name_fr: 'Barika', name_ar: 'بريكة', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Barika', ar: 'بريكة' }, { fr: 'Bitam', ar: 'بيطام' }, { fr: 'Abdelkader Azil', ar: 'عبد القادر عزيل' }, { fr: 'Tilatou', ar: 'تيلاطو' }, { fr: 'Seggana', ar: 'سقانة' }, { fr: 'Djezzar', ar: 'الجزار' }, { fr: 'Amdoukal', ar: 'أمدوكال' }, { fr: 'Ouled Ammar', ar: 'أولاد عمار' }] },
+    { id: 64, name_fr: 'Bou Saâda', name_ar: 'بوسعادة', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Bou Saâda', ar: 'بوسعادة' }] },
+    { id: 65, name_fr: 'Bir El Ater', name_ar: 'بئر العاتر', delivery_home: 900, delivery_desk: 500, communes: [{ fr: 'Bir El Ater', ar: 'بئر العاتر' }, { fr: 'Negrine', ar: 'نقرين' }, { fr: 'El Ogla Elmalha', ar: 'العقلة المالحة' }, { fr: 'Ferkane', ar: 'فركان' }] },
+    { id: 66, name_fr: 'Ksar El Boukhari', name_ar: 'قصر البخاري', delivery_home: 750, delivery_desk: 400, communes: [{ fr: 'Ksar El Boukhari', ar: 'قصر البخاري' }] },
+    { id: 67, name_fr: 'Ksar Chellala', name_ar: 'قصر الشلالة', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Ksar Chellala', ar: 'قصر الشلالة' }, { fr: 'Zmalet El Emir Abdelkader', ar: 'زمالة الأمير عبد القادر' }, { fr: 'Recheïga', ar: 'الرشيقة' }, { fr: 'Hamadia', ar: 'الحمادية' }, { fr: 'Serghine', ar: 'سرغين' }, { fr: 'Bougara', ar: 'بوقرة' }] },
+    { id: 68, name_fr: 'Aïn Oussara', name_ar: 'عين وسارة', delivery_home: 750, delivery_desk: 400, communes: [{ fr: 'Aïn Oussara', ar: 'عين وسارة' }, { fr: 'Birine', ar: 'بيرين' }, { fr: 'Bouira Lahdab', ar: 'بويرة الأحداب' }, { fr: 'El Khemis', ar: 'الخميس' }, { fr: 'Sidi Ladjel', ar: 'سيدي لعجال' }, { fr: 'Had Sahary', ar: 'حد الصحاري' }, { fr: 'Guernini', ar: 'قرنيني' }, { fr: 'Benhar', ar: 'بنهار' }, { fr: 'Hassi Fedoul', ar: 'حاسي فدول' }, { fr: 'Aïn Feka', ar: 'عين فقه' }] },
+    { id: 69, name_fr: 'Messaad', name_ar: 'مسعد', delivery_home: 800, delivery_desk: 450, communes: [{ fr: 'Messaad', ar: 'مسعد' }, { fr: 'Sed Rahal', ar: 'سد رحال' }] },
+];

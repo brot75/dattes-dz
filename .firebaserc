@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "efriha-4123d"
+  },
+  "targets": {
+    "efriha-4123d": {
+      "hosting": {
+        "dattesdz": [
+          "dattesdz"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
