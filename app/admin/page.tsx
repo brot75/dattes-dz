@@ -64,6 +64,22 @@ export default function AdminDashboard() {
                 </div>
             </div>
 
+            {/* VERCEL WARNING BANNER */}
+            <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-4 flex items-start gap-3">
+                <div className="p-2 bg-yellow-100 rounded-lg text-yellow-600">
+                    <TrendingUp className="w-5 h-5" />
+                </div>
+                <div>
+                    <h3 className="text-sm font-bold text-yellow-800">Mode Démonstration (Vercel)</h3>
+                    <p className="text-sm text-yellow-700 mt-1">
+                        Vous êtes sur un serveur "Read-Only". Les modifications (images, prix) ne sont <strong>pas sauvegardées définitivement</strong>.
+                        Si vous rechargez la page, les valeurs par défaut (Audi RS6) reviendront.
+                        <br />
+                        Pour activer la sauvegarde permanente, une base de données est requise.
+                    </p>
+                </div>
+            </div>
+
             {/* Analytics Summary */}
             <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
                 <div className="flex items-center justify-between mb-8 border-b border-gray-100 pb-6">
