@@ -113,9 +113,18 @@ const DEFAULT_DELIVERY_FEES: Record<string, { home: number, bureau: number }> = 
     return acc;
 }, {} as Record<string, { home: number, bureau: number }>);
 
-// Hardcoded users removed for security.
-// Use the registration form to create users.
-const INITIAL_USERS: User[] = [];
+// Default Admin for First Deployment
+const INITIAL_USERS: User[] = [
+    {
+        id: 'admin-default',
+        email: 'admin@dattes.dz',
+        password: 'admin', // CHANGE THIS AFTER FIRST LOGIN
+        role: 'admin',
+        name: 'Administrateur',
+        wilaya: 'Biskra',
+        phone: '0000000000'
+    }
+];
 
 interface StoreState {
     language: Language;
@@ -288,7 +297,7 @@ export const useStore = create<StoreState>()(
             setLanguage: (lang) => set({ language: lang }),
 
             settings: {
-                heroImage: '/hero-dates-v2.png',
+                heroImage: '/uploads/1770052395268-vehicles-audi_rs6_avant-audi-492180.jpeg',
                 heroImageDesktop: '/hero-dates-desktop.jpg',
                 deliveryFees: DEFAULT_DELIVERY_FEES
             },

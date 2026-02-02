@@ -83,7 +83,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <div className="relative w-full bg-dattes-primary text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`${heroImage}?t=${Date.now()}`}
@@ -95,10 +95,10 @@ export default function Home() {
             }}
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-dattes-primary via-dattes-primary/70 to-black/30" />
+        {/* Gradient Removed per request */}
 
         <div className="relative z-10 container mx-auto px-6 py-20 md:py-32 flex flex-col items-center text-center">
-          <div className="bg-dattes-primary/20 backdrop-blur-sm p-8 rounded-3xl border border-white/5 shadow-2xl max-w-4xl mx-auto">
+          <div className="bg-black/40 backdrop-blur-md p-10 rounded-3xl border border-white/10 shadow-2xl max-w-4xl mx-auto">
             <span className="text-dattes-accent uppercase tracking-widest text-sm font-bold mb-4 animate-fade-in-up block">
               {language === 'en' ? 'Tolga’s Finest. Nature’s Sweetest.' : language === 'ar' ? 'أجود تمور طولقة. حلاوة الطبيعة.' : 'Le Meilleur de Tolga. La Douceur de la Nature.'}
             </span>

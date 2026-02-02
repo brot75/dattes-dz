@@ -21,7 +21,7 @@ export default function LoginPage() {
     const t = {
         titleLogin: isRtl ? 'تسجيل الدخول' : 'Connexion',
         titleRegister: isRtl ? 'إنشاء حساب' : 'Créer un compte',
-        subtitleLogin: isRtl ? 'مرحبًا بك مجددًا في تمور الجزائر' : 'Bienvenue chez DattesDZ',
+        subtitleLogin: isRtl ? 'مرحبًا بك مجددًا في تمور الجزائر' : 'Bienvenue chez Abdattes',
         subtitleRegister: isRtl ? 'انضم إلينا للاستمتاع بأجود التمور' : 'Rejoignez-nous pour savourer l\'excellence',
         email: isRtl ? 'البريد الإلكتروني' : 'Email Address',
         password: isRtl ? 'كلمة المرور' : 'Password',
@@ -80,7 +80,7 @@ export default function LoginPage() {
                     style={{ backgroundImage: "url('/hero-dates-v2.png')" }}
                 />
                 <div className="relative z-10 text-white max-w-lg">
-                    <h1 className="text-6xl font-display font-bold mb-6 text-dattes-accent">DattesDZ</h1>
+                    <h1 className="text-6xl font-display font-bold mb-6 text-dattes-accent">Abdattes</h1>
                     <p className="text-xl opacity-90 leading-relaxed font-light">Le goût authentique du Sahara algérien, livré directement chez vous.</p>
                 </div>
             </div>

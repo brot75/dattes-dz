@@ -190,7 +190,7 @@ export default function AnalyticsPage() {
                         <ArrowLeft className="w-5 h-5 text-gray-600" />
                     </Link>
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-800">Analytiques DattesDZ</h1>
+                        <h1 className="text-3xl font-bold text-gray-800">Analytiques Abdattes</h1>
                         <p className="text-sm text-gray-500">Aperçu approfondi des performances de votre boutique.</p>
                     </div>
                 </div>
