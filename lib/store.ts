@@ -134,6 +134,7 @@ interface StoreState {
 
     settings: SiteSettings;
     updateSettings: (settings: Partial<SiteSettings>) => void;
+    fetchSettings: () => Promise<void>;
 
     currentUser: User | null;
     users: User[];
@@ -301,7 +302,31 @@ export const useStore = create<StoreState>()(
                 heroImageDesktop: '/hero-dates-desktop.jpg',
                 deliveryFees: DEFAULT_DELIVERY_FEES
             },
-            updateSettings: (newSettings) => set((state) => ({ settings: { ...state.settings, ...newSettings } })),
+            fetchSettings: async () => {
+                try {
+                    const res = await fetch('/api/settings');
+                    if (res.ok) {
+                        const data = await res.json();
+                        set((state) => ({ settings: { ...state.settings, ...data } }));
+                    }
+                } catch (e) {
+                    console.error('Failed to fetch settings:', e);
+                }
+            },
+            updateSettings: (newSettings) => {
+                set((state) => {
+                    const updated = { ...state.settings, ...newSettings };
+
+                    // Sync to Server
+                    fetch('/api/settings', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newSettings)
+                    }).catch(err => console.error('Settings sync failed', err));
+
+                    return { settings: updated };
+                });
+            },
 
             currentUser: null,
             users: INITIAL_USERS,
