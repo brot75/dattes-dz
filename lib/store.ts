@@ -298,7 +298,7 @@ export const useStore = create<StoreState>()(
             setLanguage: (lang) => set({ language: lang }),
 
             settings: {
-                heroImage: '/uploads/1770052395268-vehicles-audi_rs6_avant-audi-492180.jpeg',
+                heroImage: '/hero-dates-v2.png',
                 heroImageDesktop: '/hero-dates-desktop.jpg',
                 deliveryFees: DEFAULT_DELIVERY_FEES
             },

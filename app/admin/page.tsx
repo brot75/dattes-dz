@@ -201,13 +201,23 @@ export default function AdminDashboard() {
                         <div className="relative inline-block">
                             <input
                                 type="file"
-                                onChange={handleUploadHero}
-                                className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
                                 accept="image/*"
+                                onChange={handleUploadHero}
+                                className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100 transition-all cursor-pointer"
                             />
+                            <button
+                                onClick={() => updateSettings({ heroImage: '/hero-dates-v2.png' })}
+                                className="text-xs text-gray-400 underline hover:text-red-500 mt-2"
+                            >
+                                Restaurer l'image par défaut (Supprimer Audi)
+                            </button>
+                            {/* The original "Changer l'image" button is now redundant as the input is styled directly.
+                                Keeping it commented out or removed based on desired UI.
+                                For this change, we'll assume the new input styling replaces the need for this button.
                             <button className="bg-dattes-primary text-white px-4 py-2 rounded-lg text-sm font-bold shadow-sm hover:bg-black transition-colors">
                                 📸 Changer l'image
                             </button>
+                            */}
                         </div>
                     </div>
                 </div>
