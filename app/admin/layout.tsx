@@ -61,7 +61,8 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             >
                 <div className="p-6 flex items-center justify-between">
                     <div className={`flex items-center gap-2 font-display font-bold text-dattes-primary transition-opacity ${isSidebarOpen ? 'opacity-100' : 'opacity-0 w-0 overflow-hidden'}`}>
-                        <Store className="w-6 h-6 text-dattes-accent" />
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/logo-new.png" alt="Admin" className="h-8 w-auto object-contain" />
                         <span>Admin</span>
                     </div>
                     <button
@@ -75,6 +76,11 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
                     {SIDEBAR_ITEMS.map((item) => {
                         const isActive = pathname === item.href;
+                        // Calculate badge for orders
+                        const pendingCount = item.href === '/admin/orders'
+                            ? (useStore.getState().orders?.filter(o => o.status === 'pending').length || 0)
+                            : 0;
+
                         return (
                             <Link
                                 key={item.href}
@@ -87,11 +93,22 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                                     }
                                 `}
                             >
-                                <item.icon className={`w-5 h-5 flex-shrink-0 transition-transform group-hover:scale-110 ${isActive ? 'text-white' : 'text-gray-400'}`} />
+                                <div className="relative">
+                                    <item.icon className={`w-5 h-5 flex-shrink-0 transition-transform group-hover:scale-110 ${isActive ? 'text-white' : 'text-gray-400'}`} />
+                                    {/* Badge for collapsed state optional, but let's keep it simple for now or adding a dot? */}
+                                </div>
+
                                 {isSidebarOpen && (
-                                    <span className="font-bold text-sm tracking-wide whitespace-nowrap overflow-hidden text-ellipsis">
-                                        {item.title}
-                                    </span>
+                                    <div className="flex flex-1 items-center justify-between min-w-0">
+                                        <span className="font-bold text-sm tracking-wide whitespace-nowrap overflow-hidden text-ellipsis">
+                                            {item.title}
+                                        </span>
+                                        {pendingCount > 0 && (
+                                            <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm ml-2 animate-pulse">
+                                                {pendingCount}
+                                            </span>
+                                        )}
+                                    </div>
                                 )}
                                 {isActive && isSidebarOpen && <ChevronRight className="w-4 h-4 ml-auto opacity-50 flex-shrink-0" />}
                             </Link>
