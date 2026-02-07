@@ -13,12 +13,22 @@ export default function ProductContent({ id }: { id: string }) {
     const isRtl = language === 'ar';
     const [added, setAdded] = useState(false);
     const [quantity, setQuantity] = useState(1);
+    const [selectedImage, setSelectedImage] = useState('');
 
     useEffect(() => {
         incrementVisits();
     }, [incrementVisits]);
 
     const product = inventory.find(p => p.id === id);
+
+    // Initialize selected image when product is loaded
+    useEffect(() => {
+        if (product && product.images && product.images[0]) {
+            setSelectedImage(product.images[0]);
+        } else {
+            setSelectedImage('/products/deglet-nour.png');
+        }
+    }, [product]);
 
     if (!product) {
         notFound();
@@ -73,18 +83,32 @@ export default function ProductContent({ id }: { id: string }) {
                 <div className="bg-white rounded-3xl shadow-sm border border-dattes-primary/5 overflow-hidden">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8">
                         {/* Image Section */}
-                        <div className="bg-gray-50 p-8 flex items-center justify-center">
-                            <div className="relative w-full aspect-square max-w-md rounded-2xl overflow-hidden shadow-lg">
+                        <div className="bg-gray-50 p-8 flex flex-col items-center justify-center">
+                            <div className="relative w-full aspect-square max-w-md rounded-2xl overflow-hidden shadow-lg mb-4">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                    src={product.images?.[0] || '/products/deglet-nour.png'}
+                                    src={selectedImage}
                                     alt={displayType}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-cover transition-opacity duration-300"
                                 />
                                 <div className={`absolute top-4 ${isRtl ? 'left-4' : 'right-4'} bg-white/90 backdrop-blur px-3 py-1 rounded-full text-sm font-bold shadow-sm text-dattes-primary`}>
                                     {displayQuality}
                                 </div>
                             </div>
+                            {/* Thumbnails */}
+                            {product.images && product.images.length > 1 && (
+                                <div className="flex gap-2 max-w-md overflow-x-auto pb-2 scrollbar-hide">
+                                    {product.images.map((img, idx) => (
+                                        <button
+                                            key={idx}
+                                            onClick={() => setSelectedImage(img)}
+                                            className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${selectedImage === img ? 'border-dattes-accent ring-2 ring-dattes-accent/20' : 'border-transparent hover:border-gray-300'}`}
+                                        >
+                                            <img src={img} alt={`View ${idx}`} className="w-full h-full object-cover" />
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
                         </div>
 
                         {/* Details Section */}

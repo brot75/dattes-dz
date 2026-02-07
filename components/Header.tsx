@@ -64,7 +64,7 @@ export function Header() {
             {/* Center: Title / Logo */}
             <Link href="/" className="flex items-center group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/logo-new.png" alt="AB Dattes" className="h-12 md:h-16 w-auto object-contain transition-transform group-hover:scale-105" />
+                <img src="/logo-new.png" alt="AB Dattes" className="h-20 md:h-24 w-auto object-contain transition-transform group-hover:scale-105" />
             </Link>
 
             {/* Right: Auth & Cart */}

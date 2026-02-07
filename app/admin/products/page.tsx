@@ -194,58 +194,90 @@ export default function AdminProductsPage() {
                             </div>
 
                             {/* Image Upload */}
-                            <div>
-                                <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Image</label>
-                                <div className="flex items-center gap-4">
-                                    {newItem.images && newItem.images[0] && (
-                                        <img src={newItem.images[0]} alt="Preview" className="w-16 h-16 object-cover rounded-lg border border-gray-200" />
-                                    )}
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        className="w-full p-2 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:border-dattes-accent text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-dattes-primary file:text-white hover:file:bg-dattes-accent transition-all"
-                                        onChange={(e) => {
-                                            const file = e.target.files?.[0];
-                                            if (file) {
-                                                // Resize and Encode to Base64 (Bypass Storage Requirements)
-                                                const reader = new FileReader();
-                                                reader.onload = (event) => {
-                                                    const img = new Image();
-                                                    img.onload = () => {
-                                                        const canvas = document.createElement('canvas');
-                                                        const MAX_WIDTH = 1200;
-                                                        let width = img.width;
-                                                        let height = img.height;
+                            <div className="md:col-span-1">
+                                <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Images du Produit</label>
+                                <div className="space-y-4">
+                                    {/* Image Gallery Grid */}
+                                    <div className="grid grid-cols-3 gap-2">
+                                        {newItem.images && newItem.images.map((img, idx) => (
+                                            <div key={idx} className="relative aspect-square group">
+                                                <img src={img} alt={`Preview ${idx}`} className="w-full h-full object-cover rounded-lg border border-gray-200" />
+                                                <button
+                                                    onClick={() => {
+                                                        const newImages = [...(newItem.images || [])];
+                                                        newImages.splice(idx, 1);
+                                                        setNewItem({ ...newItem, images: newImages });
+                                                    }}
+                                                    className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full p-1 shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+                                                    type="button"
+                                                >
+                                                    <X className="w-3 h-3" />
+                                                </button>
+                                            </div>
+                                        ))}
+                                        {/* Upload Button Placeholder if empty or to add more */}
+                                        <label className="aspect-square flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                                            <Plus className="w-6 h-6 text-gray-400" />
+                                            <span className="text-[10px] text-gray-500 font-bold mt-1">Ajouter</span>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                className="hidden"
+                                                onChange={(e) => {
+                                                    const file = e.target.files?.[0];
+                                                    if (file) {
+                                                        const reader = new FileReader();
+                                                        reader.onload = (event) => {
+                                                            const img = new Image();
+                                                            img.onload = () => {
+                                                                const canvas = document.createElement('canvas');
+                                                                const MAX_WIDTH = 1200;
+                                                                let width = img.width;
+                                                                let height = img.height;
 
-                                                        if (width > MAX_WIDTH) {
-                                                            height *= MAX_WIDTH / width;
-                                                            width = MAX_WIDTH;
-                                                        }
+                                                                if (width > MAX_WIDTH) {
+                                                                    height *= MAX_WIDTH / width;
+                                                                    width = MAX_WIDTH;
+                                                                }
 
-                                                        canvas.width = width;
-                                                        canvas.height = height;
-                                                        const ctx = canvas.getContext('2d');
-                                                        ctx?.drawImage(img, 0, 0, width, height);
+                                                                canvas.width = width;
+                                                                canvas.height = height;
+                                                                const ctx = canvas.getContext('2d');
+                                                                ctx?.drawImage(img, 0, 0, width, height);
 
-                                                        // Compress to JPEG 0.8
-                                                        const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+                                                                const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+                                                                setNewItem({ ...newItem, images: [...(newItem.images || []), dataUrl] });
+                                                            };
+                                                            img.src = event.target?.result as string;
+                                                        };
+                                                        reader.readAsDataURL(file);
+                                                    }
+                                                }}
+                                            />
+                                        </label>
+                                    </div>
 
-                                                        setNewItem({ ...newItem, images: [dataUrl] });
-                                                    };
-                                                    img.src = event.target?.result as string;
-                                                };
-                                                reader.readAsDataURL(file);
-                                            }
-                                        }}
-                                    />
+                                    <div className="flex gap-2">
+                                        <input
+                                            type="text"
+                                            placeholder="Ou URL directe..."
+                                            className="flex-1 p-2 text-xs bg-gray-50 rounded-lg border border-gray-200"
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') {
+                                                    e.preventDefault();
+                                                    const val = e.currentTarget.value;
+                                                    if (val) {
+                                                        setNewItem({ ...newItem, images: [...(newItem.images || []), val] });
+                                                        e.currentTarget.value = '';
+                                                    }
+                                                }
+                                            }}
+                                        />
+                                        <button type="button" className="text-xs font-bold text-dattes-primary" onClick={() => {/* handler for button click if needed, or just rely on Enter */ }}>
+                                            OK
+                                        </button>
+                                    </div>
                                 </div>
-                                <input
-                                    type="text"
-                                    placeholder="Ou URL directe (ex: /img.png)"
-                                    className="mt-2 w-full p-2 text-xs bg-gray-50 rounded-lg border border-gray-200"
-                                    value={newItem.images?.[0] || ''}
-                                    onChange={e => setNewItem({ ...newItem, images: [e.target.value] })}
-                                />
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
