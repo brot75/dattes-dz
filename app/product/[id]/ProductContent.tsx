@@ -8,6 +8,7 @@ import { Footer } from '@/components/Footer';
 import { useStore } from '@/lib/store';
 import { ShoppingBag, ChevronLeft, Truck, ShieldCheck, Leaf } from 'lucide-react';
 import { notFound } from 'next/navigation';
+import { NutritionFacts } from '@/components/NutritionFacts';
 
 export default function ProductContent({ id }: { id: string }) {
     const { language, inventory, addToCart, incrementVisits } = useStore();
@@ -88,7 +89,7 @@ export default function ProductContent({ id }: { id: string }) {
                             <div className="relative w-full aspect-square max-w-md rounded-2xl overflow-hidden shadow-lg mb-4">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                    src={selectedImage}
+                                    src={selectedImage || '/products/deglet-nour.png'}
                                     alt={displayType}
                                     className="w-full h-full object-cover transition-opacity duration-300"
                                 />
@@ -167,31 +168,12 @@ export default function ProductContent({ id }: { id: string }) {
                                 </button>
                             </div>
 
-                            {/* Nutritional Info */}
-                            {product.nutritionalInfo && (
-                                <div>
-                                    <h3 className="font-bold text-dattes-primary mb-4">{t.nutritional}</h3>
-                                    <div className="grid grid-cols-4 gap-2 text-center">
-                                        <div className="bg-white border border-gray-100 p-3 rounded-lg shadow-sm">
-                                            <div className="text-dattes-accent font-bold text-lg">{product.nutritionalInfo.calories}</div>
-                                            <div className="text-[10px] text-gray-500 uppercase">{t.calories}</div>
-                                        </div>
-                                        <div className="bg-white border border-gray-100 p-3 rounded-lg shadow-sm">
-                                            <div className="text-gray-800 font-bold text-lg">{product.nutritionalInfo.carbs}g</div>
-                                            <div className="text-[10px] text-gray-500 uppercase">{t.carbs}</div>
-                                        </div>
-                                        <div className="bg-white border border-gray-100 p-3 rounded-lg shadow-sm">
-                                            <div className="text-gray-800 font-bold text-lg">{product.nutritionalInfo.protein}g</div>
-                                            <div className="text-[10px] text-gray-500 uppercase">{t.protein}</div>
-                                        </div>
-                                        <div className="bg-white border border-gray-100 p-3 rounded-lg shadow-sm">
-                                            <div className="text-gray-800 font-bold text-lg">{product.nutritionalInfo.fiber}g</div>
-                                            <div className="text-[10px] text-gray-500 uppercase">{t.fiber}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
                         </div>
+                    </div>
+
+                    {/* Detailed Nutrition Facts - Full Width Bottom */}
+                    <div className="mt-12">
+                        <NutritionFacts language={language} />
                     </div>
                 </div>
             </div>

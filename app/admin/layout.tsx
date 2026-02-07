@@ -2,7 +2,7 @@
 
 import { ReactNode, useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
     LayoutDashboard,
     BarChart3,
@@ -29,6 +29,7 @@ const SIDEBAR_ITEMS = [
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
     const pathname = usePathname();
+    const router = useRouter();
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const { logout, currentUser, _hasHydrated, fetchUsers } = useStore();
 
@@ -123,7 +124,10 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
                 <div className="p-4 mt-auto border-t border-gray-50 space-y-2 bg-white">
                     <button
-                        onClick={logout}
+                        onClick={() => {
+                            logout();
+                            router.push('/');
+                        }}
                         className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-all font-bold text-sm"
                     >
                         <LogOut className="w-5 h-5 flex-shrink-0" />

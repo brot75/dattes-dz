@@ -86,7 +86,7 @@ export default function Home() {
         <div className="absolute inset-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={`${heroImage}?t=${Date.now()}`}
+            src={heroImage}
             alt="Hero"
             className="w-full h-full object-cover transition-opacity duration-500"
             onError={(e) => {
