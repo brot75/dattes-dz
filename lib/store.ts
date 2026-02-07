@@ -161,6 +161,7 @@ interface StoreState {
     fetchOrders: () => Promise<void>; // New Sync Method
 
     updateUser: (userData: Partial<User>) => void;
+    fetchUsers: () => Promise<void>;
 
     // Analytics Data
     totalVisits: number;
@@ -398,10 +399,50 @@ export const useStore = create<StoreState>()(
                 }
             },
 
-            updateUser: (userData) => set((state) => ({
-                currentUser: state.currentUser ? { ...state.currentUser, ...userData } : null,
-                users: state.users.map(u => u.id === state.currentUser?.id ? { ...u, ...userData } : u)
-            })),
+            updateUser: (userData) => {
+                const state = get();
+                const currentUser = state.currentUser;
+
+                if (currentUser) {
+                    const updatedUser = { ...currentUser, ...userData };
+
+                    // Optimistic update
+                    set((state) => ({
+                        currentUser: updatedUser,
+                        users: state.users.map(u => u.id === currentUser.id ? updatedUser : u)
+                    }));
+
+                    // Sync to Backend
+                    fetch('/api/users', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(updatedUser)
+                    }).catch(err => console.error('Failed to sync user update:', err));
+                }
+            },
+
+            fetchUsers: async () => {
+                try {
+                    const res = await fetch('/api/users');
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (Array.isArray(data) && data.length > 0) {
+                            set({ users: data });
+                        } else {
+                            // Initial Seed if Empty
+                            console.log('Seeding initial users to Firestore...');
+                            await fetch('/api/users', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(INITIAL_USERS)
+                            });
+                            set({ users: INITIAL_USERS });
+                        }
+                    }
+                } catch (e) {
+                    console.error('Failed to fetch users:', e);
+                }
+            },
 
             // Analytics
             totalVisits: 0,

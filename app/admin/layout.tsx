@@ -13,7 +13,8 @@ import {
     Menu,
     X,
     ChevronRight,
-    Store
+    Store,
+    Settings
 } from 'lucide-react';
 import { useStore } from '@/lib/store';
 
@@ -23,12 +24,17 @@ const SIDEBAR_ITEMS = [
     { title: 'Commandes', icon: ShoppingBag, href: '/admin/orders' },
     { title: 'Produits', icon: Package, href: '/admin/products' },
     { title: 'Utilisateurs', icon: Users, href: '/admin/users' },
+    { title: 'Paramètres', icon: Settings, href: '/admin/settings' },
 ];
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
     const pathname = usePathname();
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const { logout, currentUser, _hasHydrated } = useStore();
+    const { logout, currentUser, _hasHydrated, fetchUsers } = useStore();
+
+    useEffect(() => {
+        fetchUsers();
+    }, [fetchUsers]);
 
     // Prevent hydration mismatch
     if (!_hasHydrated) {

@@ -1,10 +1,8 @@
-'use client';
-
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { InventoryItem, useStore } from '@/lib/store';
-import { ShoppingBag, Info, Plus, Minus } from 'lucide-react';
+import { ShoppingBag, Info, Plus, Minus, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProductCardProps {
     product: InventoryItem;
@@ -15,7 +13,7 @@ export function ProductCard({ product, t }: ProductCardProps) {
     const { addToCart, language } = useStore();
     const router = useRouter();
     const [quantity, setQuantity] = useState(1);
-    // const [isAdded, setIsAdded] = useState(false); // No longer needed
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const isRtl = language === 'ar';
     const isEn = language === 'en';
@@ -25,19 +23,35 @@ export function ProductCard({ product, t }: ProductCardProps) {
     const displayOrigin = (isRtl && product.originAr) ? product.originAr : (isEn && product.originEn) ? product.originEn : (product.origin || 'Algérie');
     const displayDesc = (isRtl && product.descriptionAr) ? product.descriptionAr : (isEn && product.descriptionEn) ? product.descriptionEn : product.description;
 
+    const currentImage = product.images && product.images.length > 0 ? product.images[currentImageIndex] : '/products/deglet-nour.png';
+
+    const nextImage = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (product.images && product.images.length > 1) {
+            setCurrentImageIndex((prev) => (prev + 1) % product.images.length);
+        }
+    };
+
+    const prevImage = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (product.images && product.images.length > 1) {
+            setCurrentImageIndex((prev) => (prev === 0 ? product.images.length - 1 : prev - 1));
+        }
+    };
+
     const handleAddToCart = () => {
         addToCart({
             id: crypto.randomUUID(),
             productId: product.id,
             name: displayType,
             quality: displayQuality,
-            type: displayType, // Ensure localized type is passed
+            type: displayType,
             quantityKg: quantity,
             pricePerKg: product.pricePerKg,
-            image: product.images[0]
+            image: currentImage
         });
-
-        // Direct Checkout Flow
         router.push('/cart');
     };
 
@@ -46,17 +60,47 @@ export function ProductCard({ product, t }: ProductCardProps) {
 
     return (
         <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-dattes-primary/5 group flex flex-col h-full">
-            <Link href={`/product/${product.id}`} className="block relative aspect-[4/3] bg-gray-100 overflow-hidden cursor-pointer">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src={product.images[0]}
-                    alt={displayType}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className={`absolute top-2 ${isRtl ? 'left-2' : 'right-2'} bg-blue-600 px-3 py-1 rounded-full text-xs font-bold shadow-sm text-white`}>
+            <div className="relative aspect-[4/3] bg-gray-100 overflow-hidden group/image">
+                <Link href={`/product/${product.id}`} className="block w-full h-full">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src={currentImage}
+                        alt={displayType}
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                </Link>
+
+                <div className={`absolute top-2 ${isRtl ? 'left-2' : 'right-2'} bg-blue-600 px-3 py-1 rounded-full text-xs font-bold shadow-sm text-white pointer-events-none`}>
                     {displayQuality}
                 </div>
-            </Link>
+
+                {product.images && product.images.length > 1 && (
+                    <>
+                        <button
+                            onClick={prevImage}
+                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-dattes-primary rounded-full p-1 shadow-md opacity-0 group-hover/image:opacity-100 transition-opacity"
+                        >
+                            <ChevronLeft className="w-5 h-5" />
+                        </button>
+                        <button
+                            onClick={nextImage}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-dattes-primary rounded-full p-1 shadow-md opacity-0 group-hover/image:opacity-100 transition-opacity"
+                        >
+                            <ChevronRight className="w-5 h-5" />
+                        </button>
+
+                        {/* Dots */}
+                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+                            {product.images.map((_, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`w-1.5 h-1.5 rounded-full shadow-sm ${idx === currentImageIndex ? 'bg-white' : 'bg-white/50'}`}
+                                />
+                            ))}
+                        </div>
+                    </>
+                )}
+            </div>
 
             <div className="p-5 flex flex-col flex-1">
                 <div className="flex justify-between items-start mb-2">

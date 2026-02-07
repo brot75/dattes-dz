@@ -2,6 +2,7 @@
 
 import { use, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { useStore } from '@/lib/store';
@@ -10,6 +11,7 @@ import { notFound } from 'next/navigation';
 
 export default function ProductContent({ id }: { id: string }) {
     const { language, inventory, addToCart, incrementVisits } = useStore();
+    const router = useRouter();
     const isRtl = language === 'ar';
     const [added, setAdded] = useState(false);
     const [quantity, setQuantity] = useState(1);
@@ -41,7 +43,7 @@ export default function ProductContent({ id }: { id: string }) {
 
     const t = {
         back: isRtl ? 'عودة للمتجر' : 'Retour à la boutique',
-        addToCart: isRtl ? 'أضف للسلة' : 'Ajouter au Panier',
+        addToCart: isRtl ? 'شراء الآن' : 'Acheter Maintenant',
         perKg: isRtl ? 'دج / كغ' : 'DA / Kg',
         description: isRtl ? 'الوصف' : 'Description',
         nutritional: isRtl ? 'القيمة الغذائية (لكل 100غ)' : 'Valeurs Nutritionnelles (pour 100g)',
@@ -66,8 +68,7 @@ export default function ProductContent({ id }: { id: string }) {
             pricePerKg: product.pricePerKg,
             image: product.images?.[0] || '/products/deglet-nour.png'
         });
-        setAdded(true);
-        setTimeout(() => setAdded(false), 2000);
+        router.push('/cart');
     };
 
     return (
