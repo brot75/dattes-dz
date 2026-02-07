@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { InventoryItem, useStore } from '@/lib/store';
 import { ShoppingBag, Info, Plus, Minus } from 'lucide-react';
 
@@ -12,8 +13,9 @@ interface ProductCardProps {
 
 export function ProductCard({ product, t }: ProductCardProps) {
     const { addToCart, language } = useStore();
+    const router = useRouter();
     const [quantity, setQuantity] = useState(1);
-    const [isAdded, setIsAdded] = useState(false);
+    // const [isAdded, setIsAdded] = useState(false); // No longer needed
 
     const isRtl = language === 'ar';
     const isEn = language === 'en';
@@ -34,9 +36,9 @@ export function ProductCard({ product, t }: ProductCardProps) {
             pricePerKg: product.pricePerKg,
             image: product.images[0]
         });
-        setIsAdded(true);
-        setTimeout(() => setIsAdded(false), 2000);
-        setQuantity(1); // Reset after add
+
+        // Direct Checkout Flow
+        router.push('/cart');
     };
 
     const increment = () => setQuantity(q => q + 1);
@@ -96,18 +98,10 @@ export function ProductCard({ product, t }: ProductCardProps) {
 
                     <button
                         onClick={handleAddToCart}
-                        className={`w-full py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2 ${isAdded
-                            ? 'bg-green-600 text-white'
-                            : 'bg-dattes-primary text-white hover:bg-dattes-accent hover:text-dattes-primary'
-                            }`}
+                        className="w-full py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2 bg-dattes-primary text-white hover:bg-dattes-accent active:scale-95 shadow-md hover:shadow-lg"
                     >
-                        {isAdded ? (
-                            <span>{t.added || '✓ Ajouté'}</span>
-                        ) : (
-                            <>
-                                <ShoppingBag className="w-4 h-4" /> {t.addToCart}
-                            </>
-                        )}
+                        <ShoppingBag className="w-5 h-5" />
+                        {t.addToCart}
                     </button>
                 </div>
             </div>

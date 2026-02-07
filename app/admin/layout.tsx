@@ -63,7 +63,6 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                     <div className={`flex items-center gap-2 font-display font-bold text-dattes-primary transition-opacity ${isSidebarOpen ? 'opacity-100' : 'opacity-0 w-0 overflow-hidden'}`}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src="/logo-new.png" alt="Admin" className="h-8 w-auto object-contain" />
-                        <span>Admin</span>
                     </div>
                     <button
                         onClick={() => setIsSidebarOpen(!isSidebarOpen)}

@@ -39,7 +39,7 @@ export default function Home() {
         '100% Bio. Direct du Producteur. Découvrez les meilleures dattes du monde, récoltées à la main et livrées sans intermédiaire.',
     shopNow: language === 'en' ? 'Shop Now' : language === 'ar' ? 'تسوق الآن' : 'Commander Maintenant',
     ourProducts: language === 'en' ? 'Our Products' : language === 'ar' ? 'منتجاتنا' : 'Nos Produits',
-    addToCart: language === 'en' ? 'Add to Cart' : language === 'ar' ? 'أضف للسلة' : 'Ajouter au Panier',
+    addToCart: language === 'en' ? 'Buy Now' : language === 'ar' ? 'شراء الآن' : 'Acheter Maintenant',
     perKg: language === 'en' ? 'DZD / Kg' : language === 'ar' ? 'دج / كغ' : 'DA / Kg',
     quality: language === 'en' ? 'Quality' : language === 'ar' ? 'الجودة' : 'Qualité',
     origin: language === 'en' ? 'Origin' : language === 'ar' ? 'المصدر' : 'Origine',

@@ -61,9 +61,10 @@ export function Header() {
                 )}
             </div>
 
-            {/* Center: Title */}
-            <Link href="/" className="font-display font-bold text-2xl md:text-3xl text-dattes-primary tracking-wide hover:text-dattes-accent transition-colors">
-                AB<span className="text-dattes-accent">dattes</span>
+            {/* Center: Title / Logo */}
+            <Link href="/" className="flex items-center group">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/logo-new.png" alt="AB Dattes" className="h-12 md:h-16 w-auto object-contain transition-transform group-hover:scale-105" />
             </Link>
 
             {/* Right: Auth & Cart */}
