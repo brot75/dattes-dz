@@ -361,12 +361,42 @@ export const useStore = create<StoreState>()(
                 });
                 get().updateInventory(currentInventory);
             },
-            updateOrderStatus: (id, status) => set((state) => ({
-                orders: state.orders.map((o) => (o.id === id ? { ...o, status } : o))
-            })),
-            updateOrderReturn: (id, reason) => set((state) => ({
-                orders: state.orders.map(o => o.id === id ? { ...o, status: 'returned', returnReason: reason } : o)
-            })),
+            updateOrderStatus: (id, status) => {
+                const state = get();
+                const order = state.orders.find(o => o.id === id);
+                if (order) {
+                    const updatedOrder = { ...order, status };
+                    // Optimistic Update
+                    set((state) => ({
+                        orders: state.orders.map((o) => (o.id === id ? updatedOrder : o))
+                    }));
+
+                    // Sync to Backend
+                    fetch('/api/orders', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(updatedOrder)
+                    }).catch(err => console.error('Failed to sync order status:', err));
+                }
+            },
+            updateOrderReturn: (id, reason) => {
+                const state = get();
+                const order = state.orders.find(o => o.id === id);
+                if (order) {
+                    const updatedOrder = { ...order, status: 'returned' as const, returnReason: reason };
+                    // Optimistic Update
+                    set((state) => ({
+                        orders: state.orders.map(o => o.id === id ? updatedOrder : o)
+                    }));
+
+                    // Sync to Backend
+                    fetch('/api/orders', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(updatedOrder)
+                    }).catch(err => console.error('Failed to sync order return:', err));
+                }
+            },
 
             updateUser: (userData) => set((state) => ({
                 currentUser: state.currentUser ? { ...state.currentUser, ...userData } : null,
