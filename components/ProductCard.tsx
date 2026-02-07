@@ -78,13 +78,13 @@ export function ProductCard({ product, t }: ProductCardProps) {
                     <>
                         <button
                             onClick={prevImage}
-                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-dattes-primary rounded-full p-1 shadow-md opacity-0 group-hover/image:opacity-100 transition-opacity"
+                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-dattes-primary rounded-full p-2 md:p-1 shadow-md opacity-100 md:opacity-0 md:group-hover/image:opacity-100 transition-opacity z-10"
                         >
                             <ChevronLeft className="w-5 h-5" />
                         </button>
                         <button
                             onClick={nextImage}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-dattes-primary rounded-full p-1 shadow-md opacity-0 group-hover/image:opacity-100 transition-opacity"
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-dattes-primary rounded-full p-2 md:p-1 shadow-md opacity-100 md:opacity-0 md:group-hover/image:opacity-100 transition-opacity z-10"
                         >
                             <ChevronRight className="w-5 h-5" />
                         </button>
