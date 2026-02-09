@@ -1,0 +1,13 @@
+var R=require("../../../chunks/[turbopack]_runtime.js")("server/app/api/settings/route.js")
+R.c("server/chunks/node_modules_next_328c0d53._.js")
+R.c("server/chunks/node_modules_@firebase_storage_dist_node-esm_index_node_esm_b8fb09e7.js")
+R.c("server/chunks/node_modules_@grpc_grpc-js_503239a0._.js")
+R.c("server/chunks/node_modules_protobufjs_d7c441d2._.js")
+R.c("server/chunks/node_modules_@firebase_firestore_dist_common-e6dbc511_node_mjs_4efe0834._.js")
+R.c("server/chunks/node_modules_@firebase_firestore_dist_index_node_mjs_9b70b54d._.js")
+R.c("server/chunks/node_modules_@firebase_firestore_dist_index_node_mjs_ae4421f5._.js")
+R.c("server/chunks/node_modules_5c724b9e._.js")
+R.c("server/chunks/[root-of-the-server]__fd61abb8._.js")
+R.c("server/chunks/_next-internal_server_app_api_settings_route_actions_a476013b.js")
+R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/settings/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/settings/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports
